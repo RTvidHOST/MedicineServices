@@ -63,7 +63,6 @@ public class BasketPaneController {
 
     @FXML
     void initialize() {
-        balance.setText(balance1);
         refrashWindow();
         balance.setText(balance1);
         try {
@@ -124,25 +123,6 @@ public class BasketPaneController {
             }
         });
     }
-
-    private ResultSet addPicker(){
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
-            ResultSet resultSet = null;
-            String select = "SELECT date FROM userpicker";
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement(select);
-                resultSet = preparedStatement.executeQuery();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return resultSet;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("information");
@@ -192,7 +172,6 @@ public class BasketPaneController {
 
     private void deleteBasket(){
         HelloController helloController = new HelloController();
-        String username = helloController.getLog();
         Basket selectedData = serviceTable.getSelectionModel().getSelectedItem();
         if (selectedData != null) {
             String name = selectedData.getName();
@@ -201,7 +180,7 @@ public class BasketPaneController {
                         "root", "1747");
                 PreparedStatement statement = connection.prepareStatement("DELETE FROM basket WHERE name = ? and user = ?");
                 statement.setString(1, name);
-                statement.setString(2, username);
+                statement.setString(2, helloController.getLog());
                 statement.executeUpdate();
                 serviceTable.getItems().remove(selectedData);
             } catch (SQLException e) {
@@ -225,7 +204,7 @@ public class BasketPaneController {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
                     "root", "1747");
             ResultSet resultSet = null;
-            String select = "SELECT * FROM basket WHERE user =?";
+            String select = "SELECT * FROM basket WHERE user = ?";
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(select);
                 preparedStatement.setString(1, username);

@@ -155,6 +155,7 @@ public class HelloController {
         }
         if (counter >= 1) {
             signIn.setOnAction(event -> {
+                signIn.getScene().getWindow().hide();
                 openUserWindow(event);
             });
         } else
