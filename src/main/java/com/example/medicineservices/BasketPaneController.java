@@ -1,11 +1,9 @@
 package com.example.medicineservices;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,50 +15,34 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 public class BasketPaneController {
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button del;
-
     @FXML
     private Button addBalance;
-
     @FXML
     private Text balance;
-
     @FXML
     private DatePicker picker;
-
     @FXML
     private Button pickerButton;
-
     @FXML
     private Button refresh;
-
     @FXML
     private TableColumn<Basket, String> name;
-
     @FXML
     private TableColumn<Basket, Double> price;
-
     @FXML
     private Text priceAll;
-
     @FXML
     private Button priceCalculator;
-
     @FXML
     private TableView<Basket> serviceTable;
-
     ObservableList<Basket> basketData = FXCollections.observableArrayList();
-
     @FXML
     void initialize() {
         refrashWindow();
@@ -130,7 +112,6 @@ public class BasketPaneController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
     String selectedDateString;
     String balance1;
     private String refrashWindow() {
@@ -148,7 +129,6 @@ public class BasketPaneController {
         }
         return balance1;
     }
-
     @FXML
     private void openSecondWindow(ActionEvent event) {
         try {
@@ -161,7 +141,6 @@ public class BasketPaneController {
             e.printStackTrace();
         }
     }
-
     private double calculateTotal() {
         double total = 0;
         for (Basket basket : basketData){
@@ -169,7 +148,6 @@ public class BasketPaneController {
         }
         return total;
     }
-
     private void deleteBasket(){
         HelloController helloController = new HelloController();
         Basket selectedData = serviceTable.getSelectionModel().getSelectedItem();
@@ -188,7 +166,6 @@ public class BasketPaneController {
             }
         }
     }
-
     private void initService() throws SQLException{
         ResultSet resultSet = dataBasket();
         while (resultSet.next()){
@@ -196,7 +173,6 @@ public class BasketPaneController {
                     resultSet.getDouble("price")));
         }
     }
-
     private ResultSet dataBasket() {
         HelloController helloController = new HelloController();
         String username = helloController.getLog();

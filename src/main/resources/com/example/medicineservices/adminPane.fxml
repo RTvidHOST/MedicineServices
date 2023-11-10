@@ -32,14 +32,14 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <Text layoutX="68.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пользователи">
+            <Text layoutX="56.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пользователи">
                <font>
-                  <Font name="Times New Roman" size="28.0" />
+                  <Font name="Times New Roman" size="32.0" />
                </font>
             </Text>
-            <Text layoutX="409.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Услуги">
+            <Text layoutX="395.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Услуги">
                <font>
-                  <Font name="Times New Roman" size="28.0" />
+                  <Font name="Times New Roman" size="32.0" />
                </font>
             </Text>
             <Button fx:id="delUser" layoutX="79.0" layoutY="76.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="144.0" text="Удалить пользователя" />

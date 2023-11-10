@@ -1,11 +1,9 @@
 package com.example.medicineservices;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,50 +16,35 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 public class AdminPaneController {
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button addService;
-
     @FXML
     private Button delService;
-
     @FXML
     private Button delUser;
-
     @FXML
     private TableColumn<User, String> login;
-
     @FXML
     private TableColumn<service, String> nameService;
-
     @FXML
     private TableColumn<User, String> password;
-
     @FXML
     private TableColumn<service, String> price;
-
     @FXML
     private TableView<service> serviceTable;
-
     @FXML
     private Button updateService;
-
     @FXML
     private Button refresh;
-
     @FXML
     private TableView<User> usersTable;
     ObservableList<User> usersData = FXCollections.observableArrayList();
     ObservableList<service> serviceData = FXCollections.observableArrayList();
-
     @FXML
     void initialize() {
         try {
@@ -97,10 +80,8 @@ public class AdminPaneController {
             openAddWindow(event);
         });
     }
-
     private void refreshTable() {
         serviceData.clear();
-
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
                     "root", "1747");
@@ -116,7 +97,6 @@ public class AdminPaneController {
             throw new RuntimeException(e);
         }
     }
-
     private void openAddWindow(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("adminAdd.fxml"));
@@ -128,8 +108,6 @@ public class AdminPaneController {
             e.printStackTrace();
         }
     }
-
-
     public void openEditWindow(){
         service selectedData = serviceTable.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("adminUpdate.fxml"));
@@ -145,7 +123,6 @@ public class AdminPaneController {
             throw new RuntimeException(e);
         }
     }
-
     private void deleteUser(){
         User selectedData = usersTable.getSelectionModel().getSelectedItem();
         if (selectedData != null) {
@@ -163,7 +140,6 @@ public class AdminPaneController {
             }
         }
     }
-
     private void deleteService(){
         service selectedData = serviceTable.getSelectionModel().getSelectedItem();
         if (selectedData != null) {
@@ -181,7 +157,6 @@ public class AdminPaneController {
             }
         }
     }
-
     private void initService() throws SQLException{
         ResultSet resultSet = dataService();
         while (resultSet.next()){
@@ -189,7 +164,6 @@ public class AdminPaneController {
                     resultSet.getString("price")));
         }
     }
-
     private void initUsers() throws SQLException{
         ResultSet resultSet = dataUsers();
         while (resultSet.next()){
@@ -197,7 +171,6 @@ public class AdminPaneController {
                     resultSet.getString("password")));
         }
     }
-
     private ResultSet dataUsers() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
@@ -215,7 +188,6 @@ public class AdminPaneController {
             throw new RuntimeException(e);
         }
     }
-
     private ResultSet dataService() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",

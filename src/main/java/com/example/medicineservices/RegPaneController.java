@@ -1,34 +1,25 @@
 package com.example.medicineservices;
-
 import java.net.URL;
 import java.sql.*;
 import java.util.Collection;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
 public class RegPaneController {
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private TextField login;
-
     @FXML
     private PasswordField password;
-
     @FXML
     private Button regBut;
-
     @FXML
     void initialize() {
         regBut.setOnAction(event -> {
@@ -36,13 +27,10 @@ public class RegPaneController {
             regAdmin(event);
         });
     }
-
     private static String username1;
-
     public void regMethod(ActionEvent event) {
         String logintext = login.getText();
         String passwordtext = password.getText();
-
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
                     "root", "1747");
@@ -65,13 +53,11 @@ public class RegPaneController {
             e.printStackTrace();
         }
     }
-
     public void regAdmin(ActionEvent event) {
         String logintext = login.getText();
         String passwordtext = password.getText();
         String adminLogin = "admin";
         String adminPassword = "admin";
-
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
                     "root", "1747");
@@ -89,7 +75,6 @@ public class RegPaneController {
             e.printStackTrace();
         }
     }
-
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("information");
@@ -97,5 +82,4 @@ public class RegPaneController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }

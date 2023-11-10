@@ -1,10 +1,8 @@
 package com.example.medicineservices;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,27 +16,19 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 public class UserPaneController {
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button add;
-
     @FXML
     private Button buscket;
-
     @FXML
     private TableColumn<service, String> name;
-
     @FXML
     private TableColumn<service, String> price;
-
     @FXML
     private TableView<service> service;
     ObservableList<service> serviceData = FXCollections.observableArrayList();
@@ -59,7 +49,6 @@ public class UserPaneController {
             openSecondWindow(event);
         });
     }
-
     private void initService() throws SQLException{
         ResultSet resultSet = dataService();
         while (resultSet.next()){
@@ -67,7 +56,6 @@ public class UserPaneController {
                     resultSet.getString("price")));
         }
     }
-
     private void addBasket(ActionEvent event){
         HelloController helloController = new HelloController();
         service selectedData = service.getSelectionModel().getSelectedItem();
@@ -90,7 +78,6 @@ public class UserPaneController {
             }
         }
     }
-
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("information");
@@ -98,7 +85,6 @@ public class UserPaneController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
     public ResultSet dataService(){
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
@@ -116,7 +102,6 @@ public class UserPaneController {
             throw new RuntimeException(e);
         }
     }
-
     @FXML
     private void openSecondWindow(ActionEvent event) {
         try {

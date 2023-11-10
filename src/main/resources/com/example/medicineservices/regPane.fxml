@@ -12,14 +12,14 @@
     <children>
         <Pane layoutX="-2.0" layoutY="-5.0" prefHeight="406.0" prefWidth="607.0" style="-fx-background-color: #40E0D0;">
             <children>
-                <Text layoutX="177.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать">
+                <Text layoutX="163.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать">
                     <font>
-                        <Font size="28.0" />
+                        <Font size="32.0" />
                     </font>
                 </Text>
-                <Text layoutX="192.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пройдите регистрацию">
+                <Text layoutX="173.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пройдите регистрацию">
                     <font>
-                        <Font size="20.0" />
+                        <Font size="24.0" />
                     </font>
                 </Text>
                 <Button fx:id="regBut" layoutX="226.0" layoutY="284.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="149.0" text="Зарегистрироваться" />

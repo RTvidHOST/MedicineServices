@@ -1,10 +1,8 @@
 package com.example.medicineservices;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,30 +13,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 public class HelloController {
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button Reg;
-
     @FXML
     private TextField login;
-
     @FXML
     private Button adminBut;
-
     @FXML
     private PasswordField password;
-
     @FXML
     private Button signIn;
-
     @FXML
     void initialize() {
         Reg.setOnAction(event -> {
@@ -64,13 +53,11 @@ public class HelloController {
                 showAlert("Заполните поля");
         });
     }
-
     public void regAdmin(ActionEvent event) {
         String logintext = login.getText();
         String passwordtext = password.getText();
         String adminLogin = "admin";
         String adminPassword = "admin";
-
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
                     "root", "1747");
@@ -88,13 +75,11 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
     private void loginAdminMethod(String loginAdmin, String passAdmin) {
         Admin admin = new Admin();
         admin.setLogin(loginAdmin);
         admin.setPassword(passAdmin);
         ResultSet result = getAdmin(admin);
-
         int counter = 0;
         while (true) {
             try {
@@ -111,7 +96,6 @@ public class HelloController {
         } else
             showAlert("Ошибка");
     }
-
     private void openAdminWindow(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("adminPane.fxml"));
@@ -123,7 +107,6 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
     public void openUserWindow(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("userPane.fxml"));
@@ -135,9 +118,7 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
     private static String username1;
-
     public void loginMethod(String log, String pass) {
         User user = new User();
         user.setLogin(log);
@@ -161,11 +142,9 @@ public class HelloController {
         } else
             showAlert("Ошибка");
     }
-
     public String getLog(){
         return username1;
     }
-
     public ResultSet getUser(User user){
         ResultSet resultSet = null;
         String select = "SELECT * FROM users WHERE login = ? AND password = ?";
@@ -182,7 +161,6 @@ public class HelloController {
         }
         return resultSet;
     }
-
     public ResultSet getAdmin(Admin admin){
         ResultSet resultSet = null;
         String select = "SELECT * FROM admin WHERE login = ? AND password = ?";
@@ -198,7 +176,6 @@ public class HelloController {
         }
         return resultSet;
     }
-
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("information");
@@ -206,7 +183,6 @@ public class HelloController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
     @FXML
     private void openSecondWindow(ActionEvent event) {
         try {
@@ -219,5 +195,4 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
 }
