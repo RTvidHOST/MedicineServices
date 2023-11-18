@@ -65,7 +65,7 @@ public class UserPaneController {
             String user = helloController.getLog();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "1747");
+                        "root", "mysql");
                 PreparedStatement statement = connection.prepareStatement("INSERT INTO basket (name, price, user) VALUES (?, ?, ?)");
                 statement.setString(1, name);
                 statement.setString(2, price);
@@ -88,7 +88,7 @@ public class UserPaneController {
     public ResultSet dataService(){
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             ResultSet resultSet = null;
             String select = "SELECT * FROM service";
             try {

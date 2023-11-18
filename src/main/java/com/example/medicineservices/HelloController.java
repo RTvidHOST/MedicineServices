@@ -60,7 +60,7 @@ public class HelloController {
         String adminPassword = "admin";
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM admin WHERE login = ?");
             statement.setString(1, adminLogin);
             ResultSet resultSet = statement.executeQuery();
@@ -150,7 +150,7 @@ public class HelloController {
         String select = "SELECT * FROM users WHERE login = ? AND password = ?";
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement prSt = connection.prepareStatement(select);
             prSt.setString(1, user.getLogin());
             prSt.setString(2, user.getPassword());
@@ -166,7 +166,7 @@ public class HelloController {
         String select = "SELECT * FROM admin WHERE login = ? AND password = ?";
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement prSt = connection.prepareStatement(select);
             prSt.setString(1, admin.getLogin());
             prSt.setString(2, admin.getPassword());
