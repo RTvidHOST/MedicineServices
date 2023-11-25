@@ -70,40 +70,42 @@ public class BasketPaneController {
             balance.setText(balance1);
         });
         pickerButton.setOnAction(event -> {
-            HelloController helloController = new HelloController();
-            if (picker.getValue() == null){
-                showAlert("Выберете дату, на котрую хотите осуществить запись");
+            if (priceAll.getText().toString() == ""){
+                showAlert("Подсчитайте стоимость");
             }
             else {
-                LocalDate selectedDate = picker.getValue();
-                selectedDateString = selectedDate.toString();
-                double bal = Double.parseDouble(balance.getText());
-                double price = Double.parseDouble(priceAll.getText());
-                if (bal < price){
-                    showAlert("Пополните баланс!");
-                }
-                if (price == Double.parseDouble(null)){
-                    showAlert("Подсчитайте стоимость");
+                HelloController helloController = new HelloController();
+                if (picker.getValue() == null){
+                    showAlert("Выберете дату, на котрую хотите осуществить запись");
                 }
                 else {
-                    try {
-                        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                                "root", "mysql");
-                        PreparedStatement statement = connection.prepareStatement("INSERT INTO userpicker (user, date) VALUES (?, ?)");
-                        statement.setString(1, helloController.getLog());
-                        statement.setDate(2, Date.valueOf(selectedDateString));
-                        statement.executeUpdate();
-                        PreparedStatement statement1 = connection.prepareStatement("UPDATE balance SET balance = balance - "
-                                + price + "WHERE user = ?");
-                        statement1.setString(1, helloController.getLog());
-                        statement1.executeUpdate();
-                        refrashWindow();
-                        balance.setText(balance1);
-                        showAlert("Вы записаны на " + selectedDateString);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
+                    LocalDate selectedDate = picker.getValue();
+                    selectedDateString = selectedDate.toString();
+                    double bal = Double.parseDouble(balance.getText());
+                    double price = Double.parseDouble(priceAll.getText());
+                    if (bal < price){
+                        showAlert("Пополните баланс!");
                     }
-                    showAlert("Успешно");
+                    else {
+                        try {
+                            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
+                                    "root", "mysql");
+                            PreparedStatement statement = connection.prepareStatement("INSERT INTO userpicker (user, date) VALUES (?, ?)");
+                            statement.setString(1, helloController.getLog());
+                            statement.setDate(2, Date.valueOf(selectedDateString));
+                            statement.executeUpdate();
+                            PreparedStatement statement1 = connection.prepareStatement("UPDATE balance SET balance = balance - "
+                                    + price + "WHERE user = ?");
+                            statement1.setString(1, helloController.getLog());
+                            statement1.executeUpdate();
+                            refrashWindow();
+                            balance.setText(balance1);
+                            showAlert("Вы записаны на " + selectedDateString);
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        showAlert("Успешно");
+                    }
                 }
             }
         });
