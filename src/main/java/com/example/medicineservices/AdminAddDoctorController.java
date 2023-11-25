@@ -39,7 +39,7 @@ public class AdminAddDoctorController {
         String pricetext = cabinet.getText();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM doctors WHERE doctor = ?");
             statement.setString(1, nametext);
             ResultSet resultSet = statement.executeQuery();

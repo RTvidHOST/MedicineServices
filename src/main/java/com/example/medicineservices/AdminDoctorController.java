@@ -148,7 +148,7 @@ public class AdminDoctorController {
             String login = selectedData.getDoctor();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "1747");
+                        "root", "mysql");
                 PreparedStatement statement = connection.prepareStatement("DELETE FROM schedule WHERE doctor = ?");
                 statement.setString(1, login);
                 statement.executeUpdate();
@@ -171,7 +171,7 @@ public class AdminDoctorController {
     private ResultSet dataDoctor2() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             ResultSet resultSet = null;
             String select = "SELECT * FROM schedule";
             try {
@@ -208,7 +208,7 @@ public class AdminDoctorController {
             String login = selectedData.getDoctor();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "1747");
+                        "root", "mysql");
                 PreparedStatement statement = connection.prepareStatement("DELETE FROM doctors WHERE doctor = ?");
                 statement.setString(1, login);
                 statement.executeUpdate();
@@ -225,7 +225,7 @@ public class AdminDoctorController {
         doctorsData2.clear();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM doctors");
             while (resultSet.next()){
@@ -270,7 +270,7 @@ public class AdminDoctorController {
     private ResultSet dataDoctor1() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             ResultSet resultSet = null;
             String select = "SELECT * FROM doctors";
             try {

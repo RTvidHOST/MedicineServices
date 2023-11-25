@@ -45,7 +45,7 @@ public class AdminUpdateDoctorController {
     private void saveData() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement statement = connection.prepareStatement("UPDATE doctors SET cabinet = " +
                     "'" + cabinet.getText() + "'" + " WHERE doctor = ?");
             statement.setString(1, Doctor.getDoctor());

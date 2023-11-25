@@ -51,7 +51,7 @@ public class DoctorScheduleUpdateController {
     private void saveData() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement statement = connection.prepareStatement("UPDATE schedule SET schedule = " +
                     "'" + time1.getText() + "'" + " WHERE doctor = ?");
             statement.setString(1, Doctor2.getDoctor());

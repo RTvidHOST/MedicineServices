@@ -74,7 +74,7 @@ public class DoctorsForUsersController {
     private ResultSet dataDoctor2() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             ResultSet resultSet = null;
             String select = "SELECT * FROM schedule";
             try {
@@ -100,7 +100,7 @@ public class DoctorsForUsersController {
     private ResultSet dataDoctor1() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             ResultSet resultSet = null;
             String select = "SELECT * FROM doctors";
             try {

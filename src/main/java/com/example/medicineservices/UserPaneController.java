@@ -80,7 +80,7 @@ public class UserPaneController {
         serviceData.clear();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM service");
             while (resultSet.next()){
@@ -106,7 +106,7 @@ public class UserPaneController {
         String text = search.getText().toString();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             ResultSet resultSet = null;
             String select = "SELECT * FROM service WHERE name = " + "'" + text + "'";
             try {
@@ -149,7 +149,7 @@ public class UserPaneController {
             String user = helloController.getLog();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "1747");
+                        "root", "mysql");
                 PreparedStatement statement = connection.prepareStatement("INSERT INTO basket (name, price, user) VALUES (?, ?, ?)");
                 statement.setString(1, name);
                 statement.setString(2, price);
@@ -172,7 +172,7 @@ public class UserPaneController {
     public ResultSet dataService(){
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             ResultSet resultSet = null;
             String select = "SELECT * FROM service";
             try {

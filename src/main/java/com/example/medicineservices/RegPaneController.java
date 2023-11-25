@@ -43,7 +43,7 @@ public class RegPaneController {
         String passwordtext = password.getText();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE login = ?");
             statement.setString(1, logintext);
             ResultSet resultSet = statement.executeQuery();
@@ -70,7 +70,7 @@ public class RegPaneController {
         String adminPassword = "admin";
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM admin WHERE login = ?");
             statement.setString(1, adminLogin);
             ResultSet resultSet = statement.executeQuery();

@@ -29,7 +29,7 @@ public class AdminAddController {
         String pricetext = price.getText();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM service WHERE name = ?");
             statement.setString(1, nametext);
             ResultSet resultSet = statement.executeQuery();

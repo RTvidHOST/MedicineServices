@@ -43,7 +43,7 @@ public class DoctorScheduleController {
         String time2text = time2.getText();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM schedule WHERE doctor = ?");
             statement.setString(1, doctortext);
             ResultSet resultSet = statement.executeQuery();

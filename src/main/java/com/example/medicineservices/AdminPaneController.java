@@ -101,7 +101,7 @@ public class AdminPaneController {
         serviceData.clear();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM service");
             while (resultSet.next()){
@@ -146,7 +146,7 @@ public class AdminPaneController {
             String login = selectedData.getLogin();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "1747");
+                        "root", "mysql");
                 PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE login = ?");
                 statement.setString(1, login);
                 statement.executeUpdate();
@@ -163,7 +163,7 @@ public class AdminPaneController {
             String name = selectedData.getName();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "1747");
+                        "root", "mysql");
                 PreparedStatement statement = connection.prepareStatement("DELETE FROM service WHERE name = ?");
                 statement.setString(1, name);
                 statement.executeUpdate();
@@ -191,7 +191,7 @@ public class AdminPaneController {
     private ResultSet dataUsers() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             ResultSet resultSet = null;
             String select = "SELECT * FROM users";
             try {
@@ -208,7 +208,7 @@ public class AdminPaneController {
     private ResultSet dataService() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "1747");
+                    "root", "mysql");
             ResultSet resultSet = null;
             String select = "SELECT * FROM service";
             try {
