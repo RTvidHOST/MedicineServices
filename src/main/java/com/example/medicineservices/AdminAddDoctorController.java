@@ -30,12 +30,8 @@ public class AdminAddDoctorController {
     @FXML
     void initialize() {
         addButton.setOnAction(event -> {
-            AddMethod(event);
-        });
-        addButton.setOnAction(event -> {
             String DOCTOR = doctor.getText().trim();
             String CABINET = cabinet.getText().trim();
-            AddMethod(event);
 
             if (!DOCTOR.equals("") && !CABINET.equals(""))
                 AddMethod(event);

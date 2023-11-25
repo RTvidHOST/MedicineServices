@@ -82,6 +82,9 @@ public class BasketPaneController {
                 if (bal < price){
                     showAlert("Пополните баланс!");
                 }
+                if (price == Double.parseDouble(null)){
+                    showAlert("Подсчитайте стоимость");
+                }
                 else {
                     try {
                         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
