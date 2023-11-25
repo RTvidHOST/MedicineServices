@@ -1,4 +1,5 @@
 package com.example.medicineservices;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,46 +10,54 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-public class adminUpdateController {
+
+public class AdminUpdateDoctorController {
+
     @FXML
     private ResourceBundle resources;
+
     @FXML
     private URL location;
+
     @FXML
     private Button addButton;
+
     @FXML
-    private TextField name;
+    private TextField cabinet;
+
     @FXML
-    private TextField price;
-    private service service;
+    private TextField DOCTOR;
+
+    private Doctor Doctor;
     @FXML
     void initialize() {
         addButton.setOnAction(event -> {
             saveData();
         });
     }
-    public void setService(service service){
-        this.service = service;
+     public void setDoctor(Doctor Doctor){
+        this.Doctor = Doctor;
 
-        name.setText(service.getName());
-        price.setText(service.getPrice());
+        DOCTOR.setText(Doctor.getDoctor());
+        cabinet.setText(Doctor.getCabinet());
     }
-    public void saveData(){
+
+    private void saveData() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
                     "root", "1747");
-            PreparedStatement statement = connection.prepareStatement("UPDATE service SET price = " +
-                    "'" + price.getText() + "'" + " WHERE name = ?");
-            statement.setString(1, service.getName());
+            PreparedStatement statement = connection.prepareStatement("UPDATE doctors SET cabinet = " +
+                    "'" + cabinet.getText() + "'" + " WHERE doctor = ?");
+            statement.setString(1, Doctor.getDoctor());
             statement.executeUpdate();
-            PreparedStatement statement1 = connection.prepareStatement("UPDATE service SET name = " +
-                    "'" + name.getText() + "'" + " WHERE name = ?");
-            statement1.setString(1, service.getName());
+            PreparedStatement statement1 = connection.prepareStatement("UPDATE doctors SET doctor = " +
+                    "'" + DOCTOR.getText() + "'" + " WHERE doctor = ?");
+            statement1.setString(1, Doctor.getDoctor());
             statement1.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        Stage stage = (Stage) name.getScene().getWindow();
+        Stage stage = (Stage) DOCTOR.getScene().getWindow();
         stage.close();
     }
 }

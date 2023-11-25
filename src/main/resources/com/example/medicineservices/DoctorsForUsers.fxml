@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medicineservices.DoctorsForUsersController">
+    <children>
+        <Pane layoutX="-2.0" layoutY="1.0" prefHeight="400.0" prefWidth="633.0" style="-fx-background-color: #40E0D0;">
+            <children>
+                <AnchorPane layoutY="120.0" prefHeight="279.0" prefWidth="296.0">
+                    <children>
+                        <TableView fx:id="doctorTable" prefHeight="279.0" prefWidth="301.0">
+                            <columns>
+                                <TableColumn fx:id="doctor1" prefWidth="155.20001828670502" text="Врач" />
+                                <TableColumn fx:id="cabinet1" prefWidth="145.5999755859375" text="Кабинет" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="302.0" layoutY="120.0" prefHeight="279.0" prefWidth="296.0">
+                    <children>
+                        <TableView fx:id="scheduleTable" prefHeight="279.0" prefWidth="327.0">
+                            <columns>
+                                <TableColumn fx:id="doctor2" prefWidth="89.60003662109375" text="Врач" />
+                                <TableColumn fx:id="time2" prefWidth="112.800048828125" text="Начало работы" />
+                                <TableColumn fx:id="time22" prefWidth="123.99996948242188" text="Окнчание работы" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+                <Text layoutX="56.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Медперсонал">
+                    <font>
+                        <Font name="Times New Roman" size="32.0" />
+                    </font>
+                </Text>
+                <Text layoutX="374.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Расписание">
+                    <font>
+                        <Font name="Times New Roman" size="32.0" />
+                    </font>
+                </Text>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

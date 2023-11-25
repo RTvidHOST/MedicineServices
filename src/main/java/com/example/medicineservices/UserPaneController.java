@@ -10,10 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 public class UserPaneController {
@@ -24,6 +21,8 @@ public class UserPaneController {
     @FXML
     private Button add;
     @FXML
+    private Button doctors;
+    @FXML
     private Button buscket;
     @FXML
     private TableColumn<service, String> name;
@@ -32,6 +31,15 @@ public class UserPaneController {
     @FXML
     private TableView<service> service;
     ObservableList<service> serviceData = FXCollections.observableArrayList();
+
+    @FXML
+    private Button refresh;
+
+    @FXML
+    private TextField search;
+
+    @FXML
+    private Button searchBut;
     @FXML
     void initialize() {
         try {
@@ -48,7 +56,83 @@ public class UserPaneController {
         buscket.setOnAction(event -> {
             openSecondWindow(event);
         });
+        doctors.setOnAction(event -> {
+            openDoctorsWindow(event);
+        });
+        searchBut.setOnAction(event -> {
+            serviceData.clear();
+            try {
+                initSearch();
+                name.setCellValueFactory(new PropertyValueFactory<>("name"));
+                price.setCellValueFactory(new PropertyValueFactory<>("price"));
+                service.setItems(serviceData);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        refresh.setOnAction(event -> {
+            service.setItems(serviceData);
+            refreshTable();
+        });
     }
+
+    private void refreshTable() {
+        serviceData.clear();
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
+                    "root", "1747");
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM service");
+            while (resultSet.next()){
+                String name = resultSet.getString("name");
+                String price = resultSet.getString("price");
+
+                serviceData.add(new service(name, price));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void initSearch() throws SQLException{
+        ResultSet resultSet = dataService1();
+        while (resultSet.next()){
+            serviceData.add(new service(resultSet.getString("name"),
+                    resultSet.getString("price")));
+        }
+    }
+
+    private ResultSet dataService1() {
+        String text = search.getText().toString();
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
+                    "root", "1747");
+            ResultSet resultSet = null;
+            String select = "SELECT * FROM service WHERE name = " + "'" + text + "'";
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(select);
+                resultSet = preparedStatement.executeQuery();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return resultSet;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void openDoctorsWindow(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DoctorsForUsers.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void initService() throws SQLException{
         ResultSet resultSet = dataService();
         while (resultSet.next()){
@@ -65,7 +149,7 @@ public class UserPaneController {
             String user = helloController.getLog();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "mysql");
+                        "root", "1747");
                 PreparedStatement statement = connection.prepareStatement("INSERT INTO basket (name, price, user) VALUES (?, ?, ?)");
                 statement.setString(1, name);
                 statement.setString(2, price);
@@ -88,7 +172,7 @@ public class UserPaneController {
     public ResultSet dataService(){
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "mysql");
+                    "root", "1747");
             ResultSet resultSet = null;
             String select = "SELECT * FROM service";
             try {

@@ -85,7 +85,7 @@ public class BasketPaneController {
                 else {
                     try {
                         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                                "root", "mysql");
+                                "root", "1747");
                         PreparedStatement statement = connection.prepareStatement("INSERT INTO userpicker (user, date) VALUES (?, ?)");
                         statement.setString(1, helloController.getLog());
                         statement.setDate(2, Date.valueOf(selectedDateString));
@@ -118,7 +118,7 @@ public class BasketPaneController {
         HelloController helloController = new HelloController();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "mysql");
+                    "root", "1747");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT balance FROM balance WHERE user = " + "'" + helloController.getLog() + "'");
             while (resultSet.next()){
@@ -155,7 +155,7 @@ public class BasketPaneController {
             String name = selectedData.getName();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "mysql");
+                        "root", "1747");
                 PreparedStatement statement = connection.prepareStatement("DELETE FROM basket WHERE name = ? and user = ?");
                 statement.setString(1, name);
                 statement.setString(2, helloController.getLog());
@@ -178,7 +178,7 @@ public class BasketPaneController {
         String username = helloController.getLog();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "mysql");
+                    "root", "1747");
             ResultSet resultSet = null;
             String select = "SELECT * FROM basket WHERE user = ?";
             try {

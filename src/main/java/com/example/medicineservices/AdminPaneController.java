@@ -2,7 +2,6 @@ package com.example.medicineservices;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +26,8 @@ public class AdminPaneController {
     private Button delService;
     @FXML
     private Button delUser;
+    @FXML
+    private Button doctors;
     @FXML
     private TableColumn<User, String> login;
     @FXML
@@ -79,12 +80,28 @@ public class AdminPaneController {
         addService.setOnAction(event -> {
             openAddWindow(event);
         });
+        doctors.setOnAction(event -> {
+            openDoctors(event);
+        });
     }
+
+    private void openDoctors(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminDoctor.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void refreshTable() {
         serviceData.clear();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "mysql");
+                    "root", "1747");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM service");
             while (resultSet.next()){
@@ -129,7 +146,7 @@ public class AdminPaneController {
             String login = selectedData.getLogin();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "mysql");
+                        "root", "1747");
                 PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE login = ?");
                 statement.setString(1, login);
                 statement.executeUpdate();
@@ -146,7 +163,7 @@ public class AdminPaneController {
             String name = selectedData.getName();
             try {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                        "root", "mysql");
+                        "root", "1747");
                 PreparedStatement statement = connection.prepareStatement("DELETE FROM service WHERE name = ?");
                 statement.setString(1, name);
                 statement.executeUpdate();
@@ -174,7 +191,7 @@ public class AdminPaneController {
     private ResultSet dataUsers() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "mysql");
+                    "root", "1747");
             ResultSet resultSet = null;
             String select = "SELECT * FROM users";
             try {
@@ -191,7 +208,7 @@ public class AdminPaneController {
     private ResultSet dataService() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "mysql");
+                    "root", "1747");
             ResultSet resultSet = null;
             String select = "SELECT * FROM service";
             try {

@@ -26,6 +26,16 @@ public class RegPaneController {
             regMethod(event);
             regAdmin(event);
         });
+        regBut.setOnAction(event -> {
+            String loginAdmin = login.getText().trim();
+            String passAdmin = password.getText().trim();
+            regAdmin(event);
+
+            if (!loginAdmin.equals("") && !passAdmin.equals(""))
+                regMethod(event);
+            else
+                showAlert("Заполните поля");
+        });
     }
     private static String username1;
     public void regMethod(ActionEvent event) {
@@ -33,7 +43,7 @@ public class RegPaneController {
         String passwordtext = password.getText();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "mysql");
+                    "root", "1747");
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE login = ?");
             statement.setString(1, logintext);
             ResultSet resultSet = statement.executeQuery();
@@ -60,7 +70,7 @@ public class RegPaneController {
         String adminPassword = "admin";
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "mysql");
+                    "root", "1747");
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM admin WHERE login = ?");
             statement.setString(1, adminLogin);
             ResultSet resultSet = statement.executeQuery();

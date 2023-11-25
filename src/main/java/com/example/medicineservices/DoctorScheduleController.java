@@ -1,44 +1,59 @@
 package com.example.medicineservices;
+
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-public class AdminAddController {
+
+public class DoctorScheduleController {
+
     @FXML
     private ResourceBundle resources;
+
     @FXML
     private URL location;
+
     @FXML
     private Button addButton;
+
     @FXML
-    private TextField name;
+    private TextField doctor;
+
     @FXML
-    private TextField price;
+    private TextField time1;
+
+    @FXML
+    private TextField time2;
+
     @FXML
     void initialize() {
         addButton.setOnAction(event -> {
             AddMethod(event);
         });
     }
-    public void AddMethod(ActionEvent event) {
-        String nametext = name.getText();
-        String pricetext = price.getText();
+
+    private void AddMethod(ActionEvent event) {
+        String doctortext = doctor.getText();
+        String time1text = time1.getText();
+        String time2text = time2.getText();
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
                     "root", "1747");
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM service WHERE name = ?");
-            statement.setString(1, nametext);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM schedule WHERE doctor = ?");
+            statement.setString(1, doctortext);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){
-                showAlert("Данная услуга уже существует");
+                showAlert("Расписание данного врача уже добавлено");
             } else {
-                statement = connection.prepareStatement("INSERT INTO service (name, price) VALUES (?, ?)");
-                statement.setString(1, nametext);
-                statement.setString(2, pricetext);
+                statement = connection.prepareStatement("INSERT INTO schedule (doctor, schedule, scheduleEND) VALUES (?, ?, ?)");
+                statement.setString(1, doctortext);
+                statement.setString(2, time1text);
+                statement.setString(3, time2text);
                 statement.executeUpdate();
                 showAlert("Успешно добавлено");
             }
@@ -53,4 +68,5 @@ public class AdminAddController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
 }

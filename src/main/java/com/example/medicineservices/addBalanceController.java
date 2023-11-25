@@ -38,7 +38,7 @@ public class addBalanceController {
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
-                    "root", "mysql");
+                    "root", "1747");
             PreparedStatement statement = connection.prepareStatement("UPDATE balance SET balance = balance + " +
                     balance + " WHERE user = ?");
             statement.setString(1, helloController.getLog());

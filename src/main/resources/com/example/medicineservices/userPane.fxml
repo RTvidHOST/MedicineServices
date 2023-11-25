@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medicineservices.UserPaneController">
     <children>
         <Pane layoutX="-2.0" layoutY="-5.0" prefHeight="406.0" prefWidth="608.0" style="-fx-background-color: #40E0D0;">
@@ -16,6 +19,10 @@
             </TableView>
             <Button fx:id="add" layoutX="420.0" layoutY="141.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="138.0" text="Добавить в корзину" />
             <Button fx:id="buscket" layoutX="420.0" layoutY="203.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="138.0" text="Перейти в корзину" />
+            <Button fx:id="doctors" layoutX="420.0" layoutY="263.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="138.0" text="Медперсонал" />
+            <TextField fx:id="search" layoutX="415.0" layoutY="14.0" />
+            <Button fx:id="searchBut" layoutX="420.0" layoutY="49.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="138.0" text="Поиск" />
+            <Button fx:id="refresh" layoutX="420.0" layoutY="326.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="138.0" text="Обновить" />
          </children>
         </Pane>
     </children>
