@@ -32,6 +32,16 @@ public class AdminAddDoctorController {
         addButton.setOnAction(event -> {
             AddMethod(event);
         });
+        addButton.setOnAction(event -> {
+            String DOCTOR = doctor.getText().trim();
+            String CABINET = cabinet.getText().trim();
+            AddMethod(event);
+
+            if (!DOCTOR.equals("") && !CABINET.equals(""))
+                AddMethod(event);
+            else
+                showAlert("Заполните поля");
+        });
     }
 
     private void AddMethod(ActionEvent event) {

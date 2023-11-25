@@ -35,6 +35,17 @@ public class DoctorScheduleController {
         addButton.setOnAction(event -> {
             AddMethod(event);
         });
+        addButton.setOnAction(event -> {
+            String DOCTOR = doctor.getText().trim();
+            String TIME1 = time1.getText().trim();
+            String TIME2 = time2.getText().trim();
+            AddMethod(event);
+
+            if (!DOCTOR.equals("") && !TIME1.equals("") && !TIME2.equals(""))
+                AddMethod(event);
+            else
+                showAlert("Заполните поля");
+        });
     }
 
     private void AddMethod(ActionEvent event) {

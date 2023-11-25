@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -34,6 +35,16 @@ public class AdminUpdateDoctorController {
         addButton.setOnAction(event -> {
             saveData();
         });
+        addButton.setOnAction(event -> {
+            String doctor = DOCTOR.getText().trim();
+            String CABINET = cabinet.getText().trim();
+            saveData();
+
+            if (!doctor.equals("") && !CABINET.equals(""))
+                saveData();
+            else
+                showAlert("Заполните поля");
+        });
     }
      public void setDoctor(Doctor Doctor){
         this.Doctor = Doctor;
@@ -59,5 +70,12 @@ public class AdminUpdateDoctorController {
         }
         Stage stage = (Stage) DOCTOR.getScene().getWindow();
         stage.close();
+    }
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
