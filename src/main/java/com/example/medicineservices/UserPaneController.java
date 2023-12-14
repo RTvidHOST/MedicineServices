@@ -31,13 +31,10 @@ public class UserPaneController {
     @FXML
     private TableView<service> service;
     ObservableList<service> serviceData = FXCollections.observableArrayList();
-
     @FXML
     private Button refresh;
-
     @FXML
     private TextField search;
-
     @FXML
     private Button searchBut;
     @FXML
@@ -75,7 +72,6 @@ public class UserPaneController {
             refreshTable();
         });
     }
-
     private void refreshTable() {
         serviceData.clear();
         try {
@@ -93,7 +89,6 @@ public class UserPaneController {
             throw new RuntimeException(e);
         }
     }
-
     private void initSearch() throws SQLException{
         ResultSet resultSet = dataService1();
         while (resultSet.next()){
@@ -101,7 +96,6 @@ public class UserPaneController {
                     resultSet.getString("price")));
         }
     }
-
     private ResultSet dataService1() {
         String text = search.getText().toString();
         try {
@@ -120,7 +114,6 @@ public class UserPaneController {
             throw new RuntimeException(e);
         }
     }
-
     private void openDoctorsWindow(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DoctorsForUsers.fxml"));
@@ -132,7 +125,6 @@ public class UserPaneController {
             e.printStackTrace();
         }
     }
-
     private void initService() throws SQLException{
         ResultSet resultSet = dataService();
         while (resultSet.next()){

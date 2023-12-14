@@ -1,10 +1,8 @@
 package com.example.medicineservices;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,60 +14,41 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 public class AdminDoctorController {
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button addDoctor;
-
     @FXML
     private Button addSchedule;
-
     @FXML
     private TableColumn<Doctor, String> cabinet1;
-
     @FXML
     private Button delDoctor;
-
     @FXML
     private Button delSchedule;
-
     @FXML
     private TableColumn<Doctor, String> doctor1;
-
     @FXML
     private TableView<Doctor> doctorTable;
-
     @FXML
     private Button refresh;
-
     @FXML
     private TableView<Doctor2> scheduleTable;
-
     @FXML
     private TableColumn<Doctor2, String> doctor2;
-
     @FXML
     private TableColumn<Doctor2, String> time2;
-
     @FXML
     private TableColumn<Doctor2, String> time22;
-
     @FXML
     private Button updateDoctor;
-
     @FXML
     private Button updateSchedule;
-
     ObservableList<Doctor> doctorsData1 = FXCollections.observableArrayList();
     ObservableList<Doctor2> doctorsData2 = FXCollections.observableArrayList();
-
     @FXML
     void initialize() {
         try {
@@ -113,7 +92,6 @@ public class AdminDoctorController {
             openEditScheduleWindow();
         });
     }
-
     private void openEditScheduleWindow() {
         Doctor2 selectedData = scheduleTable.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DoctorScheduleUpdate.fxml"));
@@ -129,7 +107,6 @@ public class AdminDoctorController {
             throw new RuntimeException(e);
         }
     }
-
     private void openAddScheduleWindow() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DoctorSchedule.fxml"));
@@ -141,7 +118,6 @@ public class AdminDoctorController {
             e.printStackTrace();
         }
     }
-
     private void deleteSchedule() {
         Doctor2 selectedData = scheduleTable.getSelectionModel().getSelectedItem();
         if (selectedData != null) {
@@ -159,7 +135,6 @@ public class AdminDoctorController {
             }
         }
     }
-
     private void initDoctor2() throws SQLException{
         ResultSet resultSet = dataDoctor2();
         while (resultSet.next()){
@@ -167,7 +142,6 @@ public class AdminDoctorController {
                     resultSet.getString("schedule"), resultSet.getString("scheduleEND")));
         }
     }
-
     private ResultSet dataDoctor2() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
@@ -185,7 +159,6 @@ public class AdminDoctorController {
             throw new RuntimeException(e);
         }
     }
-
     private void openEditDoctorWindow() {
         Doctor selectedData = doctorTable.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminUpdateDoctor.fxml"));
@@ -201,7 +174,6 @@ public class AdminDoctorController {
             throw new RuntimeException(e);
         }
     }
-
     private void deleteDoctor() {
         Doctor selectedData = doctorTable.getSelectionModel().getSelectedItem();
         if (selectedData != null) {
@@ -219,7 +191,6 @@ public class AdminDoctorController {
             }
         }
     }
-
     private void refreshTable() {
         doctorsData1.clear();
         doctorsData2.clear();
@@ -246,7 +217,6 @@ public class AdminDoctorController {
             throw new RuntimeException(e);
         }
     }
-
     private void openAddDoctorWindow() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminAddDoctor.fxml"));
@@ -258,7 +228,6 @@ public class AdminDoctorController {
             e.printStackTrace();
         }
     }
-
     private void initDoctor1() throws SQLException{
         ResultSet resultSet = dataDoctor1();
         while (resultSet.next()){
@@ -266,7 +235,6 @@ public class AdminDoctorController {
                     resultSet.getString("cabinet")));
         }
     }
-
     private ResultSet dataDoctor1() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
@@ -284,5 +252,4 @@ public class AdminDoctorController {
             throw new RuntimeException(e);
         }
     }
-
 }

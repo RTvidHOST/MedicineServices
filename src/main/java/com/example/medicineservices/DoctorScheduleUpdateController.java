@@ -1,5 +1,4 @@
 package com.example.medicineservices;
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,29 +10,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 public class DoctorScheduleUpdateController {
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button addButton;
-
     @FXML
     private TextField DOCTOR;
-
     @FXML
     private TextField time1;
-
     @FXML
     private TextField time2;
-
     private Doctor2 Doctor2;
-
     @FXML
     void initialize() {
         addButton.setOnAction(event -> {
@@ -51,7 +41,6 @@ public class DoctorScheduleUpdateController {
                 showAlert("Заполните поля");
         });
     }
-
     public void setDoctor(Doctor2 Doctor2){
         this.Doctor2 = Doctor2;
 
@@ -59,7 +48,6 @@ public class DoctorScheduleUpdateController {
         time1.setText(Doctor2.getSchedule());
         time2.setText(Doctor2.getScheduleEND());
     }
-
     private void saveData() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine",
@@ -89,5 +77,4 @@ public class DoctorScheduleUpdateController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }
